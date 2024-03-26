@@ -59,7 +59,7 @@ We welcome contributions to Hirfa App! Please read our [CONTRIBUTING.md](CONTRIB
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md] file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](Licence_LINK) file for details.
 
 ## Acknowledgments
 
