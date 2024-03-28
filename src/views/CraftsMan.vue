@@ -1,5 +1,5 @@
 <template>
-  <div class=" flex flex-col container min-h-screen p-6 rounded-lg shadow-lg">
+  <div class=" flex flex-col container min-h-screen p-6  bg-hirfa-four-02">
     <div class="text-center flex flex-col">
       <div class="mb-4">
         <!-- Image Placeholder for the Craftsman -->
@@ -76,10 +76,12 @@
       </template>
     </Modal>
   </div>
+  <footer-f></footer-f>
 </template>
 <script setup>
 import StarRating from "../components/StarRating.vue";
 import Modal from "../components/modal.vue";
+import FooterF from "../components/FooterF.vue";
 </script>
 <script>
 export default {

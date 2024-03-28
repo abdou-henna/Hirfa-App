@@ -7,12 +7,12 @@
         v-for="craftsman in sortedCards"
         :key="craftsman.order"
         :class="{ 'mb-36': craftsman.order === 2 }"
-        class="relative card bg-hirfa-one-03 bg-opacity-60"
+        class="relative card bg-white bg-opacity-60"
       >
         <img
           :src="craftsman.image"
           :alt="craftsman.name"
-          class="card-img rounded-full border-4 border-white absolute -top-10 left-1/2 transform -translate-x-1/2"
+          class="card-img border rounded-3xl  shadow-xl bg-white bg-opacity-50 cursor-pointer hover:shadow-2xl transition-shadow duration-300 ease-in-out absolute -top-10 left-1/2 transform -translate-x-1/2"
         />
         <div class="card-content p-4">
           <h3 class="font-bold text-xl mb-2 text-center">
@@ -21,7 +21,8 @@
           <StarRating :rating="craftsman.rating" />
         </div>
       </div>
-      <button class="btn mb-20">عرض كل الحرفيين</button>
+      <RouterLink :to="{name: 'craftsmen'}">
+      <button class="btn mb-20">عرض كل الحرفيين</button></RouterLink>
     </div>
   </section>
 </template>

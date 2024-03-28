@@ -4,11 +4,13 @@
     <page-one class="h-screen w-full"/>
     <PageTwoVue/>
     <page-three/>
+    <footer-f></footer-f>
   </main>
 </template>
 
 <script setup>
 import NavBarH from '@/components/NavBarH.vue';
+import FooterF from '@/components/FooterF.vue';
 import PageOne from '@/components/HomePage/PageOne.vue';
 import PageTwoVue from '@/components/HomePage/PageTwo.vue';
 import PageThree from '@/components/HomePage/PageThree.vue';
