@@ -10,7 +10,7 @@
         dir="rtl"
         :value="formattedDate"
         v-on="inputEvents"
-        class="flex bg-[#f8f8f8] w-full font-semibold leading-4 px-3 h-[50px] border-2 border-solid border-[#f8f8f8] hover:bg-[#f4f4f4] shadow-[0_0_0_1px_rgba(0,0,0,0.075)] mt-4 rounded-md focus:outline-none focus:border-blue-400"
+        class="input-style w-full"
         @click="() => togglePopover()"
         :placeholder="placeholderText"
       />
@@ -36,3 +36,19 @@ const placeholderText = computed(() => {
   return  'تاريخ الميلاد';
 });
 </script>
+<style scoped>
+.input-style {
+  background-color: #f8f8f8;
+  border: 2px solid #f8f8f8;
+  border-radius: 0.375rem; /* 6px */
+  font-family: font-semibold;
+  padding: 0.5rem;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.input-style:hover,
+.input-style:focus {
+  background-color: #f4f4f4;
+  border-color: #3B82F6; /* Tailwind blue-500 */
+}
+</style>

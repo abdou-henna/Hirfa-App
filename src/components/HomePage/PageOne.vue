@@ -24,11 +24,13 @@
         >
           تسجيل الدخول
         </button></RouterLink>
-        <button
+        <router-link :to="{name: 'singup'}">
+          <button
           class="px-6 py-2 bg-hirfa-one-02 text-white rounded-md text-lg font-medium hover:bg-hirfa-one-01"
         >
           إنشاء حساب
         </button>
+        </router-link>
       </div>
     </div>
   </div>

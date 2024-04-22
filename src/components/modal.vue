@@ -1,6 +1,6 @@
 <template>
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center "  dir="rtl">
-      <div class="bg-white rounded-lg shadow-lg p-8 m-4 max-w-xl w-1/2 max-h-[70%] overflow-auto">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center  z-[100] "  dir="rtl">
+      <div class="bg-white rounded-lg shadow-lg p-8 m-4 max-w-xl md:w-1/2 max-h-[70%] overflow-auto">
         <div class="flex justify-between items-center pb-3">
           <slot name="header"></slot>
           <div class="cursor-pointer z-50" @click="$emit('close')">

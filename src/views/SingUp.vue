@@ -1,62 +1,169 @@
 <template>
-<div  class="w-full flex items-stretch">
-  <div class=" w-1/2 min-h-screen bg-hirfa-four-01 flex items-center justify-center ">
-   <img src="../../public/HomeImg.jpg" class=" w-[80%] place-self-center ">
-  </div>
-  <div class=" w-1/2 flex items-center justify-center ">
-    <div class=" w-[80%] m-auto h-full singup ">
-      <header  class="w-full h-[50px]    mt-10  " >
-            <img src="../../public/Hirfa.png" class=" w-[100px] float-right pr-[5px]">
-      </header>
-      <section class="w-full  mx-10 mt-10  ">
-        <div dir="rtl"  class="m-6" >
-          <h1 class=" font-cairo text-lg mb-2">منصتنا ترحب بكم </h1>
-          <p class=" font-normal  " >قم بتسجيل حساب جديد أو <RouterLink to="/login"><a  class=" text-blue-700 cursor-pointer " > تسجيل الدخول </a></RouterLink></p>
-        </div>
-        <div dir="rtl" class=" m-6 ">
-        <input type="text" class="bg-[#f8f8f8] w-[48%] ml-4 float-right font-semibold leading-4 px-2 h-[50px] border-2 border-solid border-[#f8f8f8] hover:bg-[#f4f4f4] shadow-[0_0_0_1px_rgba(0,0,0,0.075)] mt-4 rounded-md focus:outline-none focus:border-blue-400 " placeholder="الإسم الأول" >
-        <input type="text" class="bg-[#f8f8f8] w-[48%] float-left font-semibold leading-4 px-2 h-[50px] border-2 border-solid border-[#f8f8f8] hover:bg-[#f4f4f4] shadow-[0_0_0_1px_rgba(0,0,0,0.075)] mt-4 rounded-md focus:outline-none focus:border-blue-400 " placeholder="الإسم الأخير" >
-        <input type="text" class="bg-[#f8f8f8] w-full font-semibold leading-4 px-2 h-[50px] border-2 border-solid border-[#f8f8f8] hover:bg-[#f4f4f4] shadow-[0_0_0_1px_rgba(0,0,0,0.075)] mt-4 rounded-md focus:outline-none focus:border-blue-400 " placeholder="إسم المستخدم (بالإنجليزية)" >
-        <input type="email" class="bg-[#f8f8f8] w-full font-semibold leading-4 px-2 h-[50px] border-2 border-solid border-[#f8f8f8] hover:bg-[#f4f4f4] shadow-[0_0_0_1px_rgba(0,0,0,0.075)] mt-4 rounded-md focus:outline-none focus:border-blue-400 " placeholder="البريد الإلكتروني">
-        <input type="password" class="bg-[#f8f8f8] w-full font-semibold leading-4 px-2 h-[50px] border-2 border-solid border-[#f8f8f8] hover:bg-[#f4f4f4] shadow-[0_0_0_1px_rgba(0,0,0,0.075)] mt-4 rounded-md focus:outline-none focus:border-blue-400 " placeholder="كلمة المرور"  >
-        <div class="bg-[#f8f8f8] cursor-pointer float-left w-[15%] font-semibold p-1 h-[50px] border-2 border-solid border-[#f8f8f8] hover:bg-[#f4f4f4] shadow-[0_0_0_1px_rgba(0,0,0,0.075)] mt-4 rounded-md focus:outline-none focus:border-blue-400 grid grid-cols-2 gap-1 items-center  " >
-          <span class="">213+</span>
-          <img src="../../public/alg.png" class="w-[22px] ">
-        </div>
-        <input type="tel" class="bg-[#f8f8f8] float-right w-[83%] font-semibold leading-4 px-2 h-[50px] border-2 border-solid border-[#f8f8f8] hover:bg-[#f4f4f4] shadow-[0_0_0_1px_rgba(0,0,0,0.075)] mt-4 rounded-md focus:outline-none focus:border-blue-400 " placeholder="رقم الهاتف" >
-       
-
-        <select name="" id="" class="bg-[#f8f8f8] w-full font-semibold text-[#7f7f7feb]  leading-6 p-2 h-[50px] border-2 border-solid border-[#f8f8f8] hover:bg-[#f4f4f4] shadow-[0_0_0_1px_rgba(0,0,0,0.075)] mt-4 rounded-md focus:outline-none focus:border-blue-400"  >
-          <option value="" disabled hidden selected class="  " > <p class="" > الجنس </p></option>
-          <option value="" class="font-bold" >ذكر</option>
-          <option value="" class="font-bold  " >أنثى</option>
-        </select>
-        <date-picker/>
-        <button class=" hover:bg-[#004aca] w-full mt-12 mb-12 bg-[#005CFF] font-semibold text-white h-[50px] rounded-md focus:bg-[] " >إنشاء حساب </button>
-  </div>
-       </section>
-      <footer></footer>
+  <div class="flex w-full h-screen overflow-hidden">
+    <div
+      class="flex w-1/2 min-h-screen items-center justify-center bg-hirfa-four-01"
+    >
+      <img
+        src="../../public/HomeImg.jpg"
+        alt="Home Image"
+        class="w-4/5 self-center"
+      />
+    </div>
+    <div class="flex w-1/2 items-center justify-center overflow-auto">
+      <form @submit.prevent="submitForm" class="w-4/5 m-auto h-full">
+        <header class="mt-10 flex w-full h-12 items-center justify-end">
+          <img
+            src="../../public/Hirfa.png"
+            alt="Logo"
+            class="h-10 w-auto pr-2"
+          />
+        </header>
+        <section class="pb-10 my-10 mx-10">
+          <div dir="rtl" class="m-6">
+            <h1 class="text-lg font-cairo mb-2">منصتنا ترحب بكم</h1>
+            <p>
+              قم بتسجيل حساب جديد أو
+              <RouterLink to="/login" class="text-blue-700 cursor-pointer"
+                >تسجيل الدخول</RouterLink
+              >
+            </p>
+          </div>
+          <div dir="rtl" class="m-6 space-y-4">
+            <div class="flex justify-between w-full">
+              <input
+                v-model="user.firstName"
+                type="text"
+                placeholder="الإسم الأول"
+                class="input-style w-[48%]"
+              />
+              <input
+                v-model="user.lastName"
+                type="text"
+                placeholder="الإسم الأخير"
+                class="input-style w-[48%]"
+              />
+            </div>
+            <input
+              v-model="user.email"
+              type="email"
+              placeholder="البريد الإلكتروني"
+              class="input-style w-full"
+            />
+            <input
+              v-model="user.password"
+              type="password"
+              placeholder="كلمة المرور"
+              class="input-style w-full"
+            />
+            <div class="flex justify-between w-full mt-4">
+              <input
+                v-model="user.phone"
+                type="tel"
+                placeholder="رقم الهاتف"
+                dir="rtl"
+                class="input-style w-[84%]"
+              />
+              <div class="input-style flex w-[14%] items-center justify-around">
+                <span class="text-sm">213+</span>
+                <img src="../../public/alg.png" alt="Flag" class="w-[35%]" />
+              </div>
+            </div>
+            <select v-model="user.gender" class="select-style w-full ">
+              <option disabled hidden selected value="">الجنس</option>
+              <option value="male">ذكر</option>
+              <option value="female">أنثى</option>
+            </select>
+            <select v-model="user.role" class="select-style w-full">
+              <option disabled hidden selected value="">الفـئـة</option>
+              <option value="client">عـمــيل</option>
+              <option value="craftsman">حــرفـي</option>
+            </select>
+            <date-picker v-model="user.birthDate" />
+            <button
+              type="submit"
+              class="mt-16 w-full rounded-md bg-[#005CFF] py-2 text-white hover:bg-[#004aca]"
+            >
+              إنشاء حساب
+            </button>
+          </div>
+        </section>
+      </form>
     </div>
   </div>
-</div>
 </template>
+
 <script>
-import DatePicker from '@/components/DatePicker.vue';
-import 'v-calendar/style.css';
-export default{
-  components : {
+import DatePicker from "@/components/DatePicker.vue";
+import "v-calendar/style.css";
+import axios from "axios"; // تأكد من تثبيت axios إذا لم يكن مثبتًا بالفعل
+
+export default {
+  components: {
     DatePicker,
-  }
-}
+  },
+  data() {
+    return {
+      user: {
+        firstName: "",
+        lastName: "",
+        username: "",
+        email: "",
+        password: "",
+        phone: "",
+        gender: "",
+        role: "",
+        birthDate: null,
+      },
+    };
+  },
+  methods: {
+    async submitForm() {
+      try {
+        // استبدل URL بعنوان الـ API الخاص بك
+        const response = await axios.post("YOUR_API_ENDPOINT", this.user);
+        console.log(response.data);
+        // بعد الإرسال بنجاح، يمكنك إعادة توجيه المستخدم أو إظهار رسالة نجاح
+      } catch (error) {
+        console.error(error);
+        // يمكنك هنا إظهار رسالة خطأ للمستخدم
+      }
+    },
+  },
+};
 </script>
-<style>
-select {
+
+<style scoped>
+.input-style {
+  background-color: #f8f8f8;
+  border: 2px solid #f8f8f8;
+  border-radius: 0.375rem; /* 6px */
+  font-family: font-semibold;
+  padding: 0.5rem;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.input-style:hover,
+.input-style:focus {
+  background-color: #f4f4f4;
+  border-color: #3b82f6; /* Tailwind blue-500 */
+}
+
+.select-style {
   -webkit-appearance: none;
   -moz-appearance: none;
+  background-color: #f8f8f8;
+  border: 2px solid #f8f8f8;
   appearance: none;
-  background: url(../assets/singup/arrow.svg) no-repeat;
-  background-position: left 5% center;
   background-size: 10px;
-  padding-right: 20px; /* add some padding to the right so the text doesn't overlap with the arrow */
+  border: 2px solid #f8f8f8;
+  border-radius: 0.375rem; /* 6px */
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem; /* Adjusted padding for text and arrow */
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.select-style:hover,
+.select-style:focus {
+  background-color: #f4f4f4;
+  border-color: #3b82f6;
 }
 </style>

@@ -28,7 +28,7 @@
 </template>
 <script>
 export default {
-  name: "NavBar",
+  name: "NavBarH",
   data() {
     return {
       showMenu: false,

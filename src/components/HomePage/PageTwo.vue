@@ -1,13 +1,15 @@
 <template>
   <section class="py-12 bg-gray-10">
+    <h2 class="text-4xl font-bold text-center mb-28">الحرفيين المميزين</h2>
     <div
       class="container mx-auto px-4 flex flex-wrap items-center justify-center gap-6"
     >
       <div
         v-for="craftsman in sortedCards"
         :key="craftsman.order"
-        :class="{ 'mb-36': craftsman.order === 2 }"
-        class="relative card bg-white bg-opacity-60"
+        :class="{ 'md:mb-36': craftsman.order === 2 }"
+        class="relative card bg-white bg-opacity-60 mt-20 md:mt-0"
+        @click="gotocraft"
       >
         <img
           :src="craftsman.image"
@@ -67,6 +69,11 @@ export default {
     sortedCards() {
       return this.craftsmen.sort((a, b) => a.order - b.order);
     },
+  },
+  methods: {
+    gotocraft(){
+      this.$router.push('/craftsman');
+    }
   },
 };
 </script>
