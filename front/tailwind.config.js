@@ -29,6 +29,7 @@ export default {
       center: "true",
     },
     screens: {
+      lg: "1700px",
       md: "1100px",
       sm: "640px",
       'rf': {'max': '640px'}, 

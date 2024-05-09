@@ -1,7 +1,7 @@
 <template>
   <div class="flex w-full h-screen overflow-hidden">
     <div
-      class="flex w-1/2 min-h-screen items-center justify-center bg-hirfa-four-01"
+      class="md:flex hidden w-1/2 min-h-screen items-center justify-center bg-hirfa-four-01"
     >
       <img
         src="../../public/HomeImg.jpg"
@@ -9,13 +9,13 @@
         class="w-4/5 self-center"
       />
     </div>
-    <div class="flex w-1/2 items-center justify-center overflow-auto">
-      <form @submit.prevent="submitForm" class="w-4/5 m-auto h-full">
-        <header class="mt-10 flex w-full h-12 items-center justify-end">
+    <div class="flex md:w-1/2 w-full items-center justify-center overflow-auto">
+      <form @submit.prevent="submitForm" class="md:w-4/5 w-full m-auto h-full">
+        <header class="mt-10 flex my-10 mx-10 h-12 ">
           <img
             src="../../public/Hirfa.png"
             alt="Logo"
-            class="h-10 w-auto pr-2"
+            class="h-10 w-auto m-auto pr-2"
           />
         </header>
         <section class="pb-10 my-10 mx-10">
@@ -28,7 +28,7 @@
               >
             </p>
           </div>
-          <div dir="rtl" class="m-6 space-y-4">
+          <div dir="rtl" class="md:m-6 space-y-4">
             <div class="flex justify-between w-full">
               <input
                 v-model="user.firstName"
@@ -61,9 +61,9 @@
                 type="tel"
                 placeholder="رقم الهاتف"
                 dir="rtl"
-                class="input-style w-[84%]"
+                class="input-style w-[74%] md:w-[84%]"
               />
-              <div class="input-style flex w-[14%] items-center justify-around">
+              <div class="input-style flex w-[24%] md:w-[14%] items-center justify-around">
                 <span class="text-sm">213+</span>
                 <img src="../../public/alg.png" alt="Flag" class="w-[35%]" />
               </div>
