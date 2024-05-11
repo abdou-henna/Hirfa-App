@@ -3,7 +3,7 @@
     <div class="w-1/2 min-h-screen hidden bg-hirfa-four-01 md:flex items-center justify-center">
      <img src="../../public/HomeImg.jpg" class="w-[80%] place-self-center">
     </div>
-    <div class="md:w-1/2 w-full  flex lg:mt-28  ">
+    <div class="md:w-1/2 w-full  flex mtt-28  ">
       <form @submit.prevent="submitLogin" dir="rtl" class=" md:w-[60%] w-[85%] m-auto   h-full">
         
           <header class="w-full h-[50px]    mt-10">
@@ -86,6 +86,11 @@ methods: {
 
 .card:hover .text-container h5 {
   opacity: 1;
+}
+@media (min-width: 1701px) {
+  .mtt-28 {
+    margin-top: 7rem;
+  }
 }
     </style>
     
