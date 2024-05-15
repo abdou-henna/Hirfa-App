@@ -11,7 +11,7 @@
           class="border border-gray-300 rounded-lg p-2"
         >
           <option value="">اختر الحرفة</option>
-          <option v-for="type in craftsmanTypes" :value="type" :key="type">
+          <option v-for=" type in craftsmanTypes" :value="type" :key="type" >
             {{ type }}
           </option>
         </select>

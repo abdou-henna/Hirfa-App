@@ -10,16 +10,18 @@
         <!-- عرض صورة الحرفي ومعلوماته -->
         <div class="mb-4">
           <img
-            class="w-40 h-40 rounded-full border-4 border-blue-500"
+            class="w-40 h-40 rounded-full border-4 border-blue-500 cursor-pointer"
             :src="craftsman.ProfileImg"
+            @click="triggerProfileImgUpload"
             alt="Craftsman Profile"
           />
+          <input type="file" ref="profileImgInput" class="hidden" @change="handleProfileImgChange" />
         </div>
         <div class="mb-4">
           <h2 class="text-gray-800 font-bold text-4xl">{{ craftsman.name }}</h2>
         </div>
         <!-- عرض تفاصيل الحرفة والمكان والسعر -->
-        <div class="mb-4 space-y-2" >
+        <div class="mb-4 space-y-2">
           <p class="text-gray-700"> الحرفة : {{ craftsman.type }}</p>
           <p class="text-gray-700"> المكان : {{ craftsman.place }} </p>
           <p class="text-gray-700"> السعر : {{ craftsman.price }} </p>
@@ -37,6 +39,10 @@
           <p class="text-sm text-gray-600 mt-2">
             عدد العملاء الذين تعاملوا مع الحرفي: {{ reviews.length }}
           </p>
+        </div>
+        <!-- زر لتعديل البيانات -->
+        <div v-if="isOwner" class="mt-4">
+          <button @click="showEditModal = true" class="btn">تعديل البيانات</button>
         </div>
       </div>
 
@@ -111,6 +117,12 @@
     </div>
 
     <!-- مودال تعديل المعلومات -->
+    <EditCraftsmanModal
+      v-if="showEditModal"
+      :craftsman="craftsman"
+      @closeModal="showEditModal = false"
+      @saveChanges="saveCraftsmanChanges"
+    />
 
     <footer-f class="z-30"></footer-f>
   </div>
@@ -125,9 +137,22 @@ import Modal from "../components/Modal.vue";
 import FooterF from "../components/FooterF.vue";
 import NavBarR from "../components/NavBarR.vue";
 import CreatePostForm from "../components/CreatePostForm.vue";
+import EditCraftsmanModal from "../components/EditCraftsmanModal.vue";
 
 const route = useRoute();
 const craftsman = ref(null);
+const showModal = ref(false);
+const showModal1 = ref(false);
+const selectedImage = ref(null);
+const showEditModal = ref(false);
+const reviews = ref([
+  { id: 1, rating: 5, customerName: "عميل 1", comment: "عمل ممتاز!" },
+  { id: 2, rating: 4.6, customerName: "عميل 2", comment: "عمل ممتاز!" },
+  { id: 3, rating: 2, customerName: "عميل 3", comment: "عمل ممتاز!" },
+  { id: 4, rating: 3.5, customerName: "عميل 4", comment: "عمل ممتاز!" },
+  // أضف المزيد من التقييمات هنا
+]);
+const isOwner = ref(true); // يُفترض أن هذه القيمة ستتحدد بناءً على ما إذا كان المستخدم هو صاحب الصفحة
 
 onMounted(() => {
   const id = parseInt(route.params.id);
@@ -135,100 +160,30 @@ onMounted(() => {
   const foundCraftsman = craftsmen.find((c) => c.id === id);
   if (foundCraftsman) {
     craftsman.value = foundCraftsman;
-    // مثلاً إذا كان لدينا بيانات المعرض والمراجعات في الكائن
   } else {
-    // Handle error, e.g., show message or redirect
     console.error("Craftsman not found");
-    console.error( "id", id);
+    console.error("id", id);
   }
 });
-</script>
-<script>
-export default {
-  name: "CraftsmanProfile",
-  data() {
-    return {
 
-      showModal: false,
-      reviews: [
-        { id: 1, rating: 5, customerName: "1عميل", comment: "عمل ممتاز!" },
-        { id: 2, rating: 4.6, customerName: "2عميل", comment: "عمل ممتاز!" },
-        { id: 3, rating: 2, customerName: "3عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-        { id: 4, rating: 3.5, customerName: "4عميل", comment: "عمل ممتاز!" },
-      ],
-      showModal1: false,
-      selectedImage: null,
-      isOwner: true, // يُفترض أن هذه القيمة ستتحدد بناءً على ما إذا كان المستخدم هو صاحب الصفحة
-      showEditModal: false,
+const closeImageModal = () => {
+  showModal1.value = false;
+  selectedImage.value = null;
+};
 
-      newGalleryImages: [],
-      deletedGalleryImages: [],
-      tempCraftsman: {}, // تستخدم لتخزين التعديلات المؤقتة
-      tempProfileImg: null, // لتخزين الصورة المؤقتة
-      tempProfileImgFile: null, // لتخزين ملف الصورة المؤقت
-      tempGalleryImagesFiles: [], // لتخزين ملفات الصور الجديدة المؤقتة
-      newGalleryImagesDescriptions: [], // لتخزين وصف الصور الجديد
-    };
-  },
-  methods: {
-    
-
-    
-
-    
-    
-
-    closeImageModal() {
-      this.showModal1 = false;
-      this.selectedImage = null;
-    },
-  },
+const saveCraftsmanChanges = (updatedCraftsman, newGalleryImages) => {
+  craftsman.value = updatedCraftsman;
+  if (newGalleryImages.length > 0) {
+    newGalleryImages.forEach(image => {
+      craftsman.value.craftsmanGallery.push({ src: image.src, description: image.description });
+    });
+  }
+  showEditModal.value = false;
 };
 </script>
 
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Jomhuria&display=swap");
-.font-jomhuria {
-  font-family: "Jomhuria", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-</style>
 <style scoped>
 .btn {
   @apply text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded;
-}
-
-/* استعلامات الوسائط للشاشات الكبيرة */
-@media (min-width: 768px) {
-  .modal-content {
-    min-width: 1000px; /* الحد الأدنى لعرض الحاوية */
-    min-height: 800px; /* الحد الأدنى لارتفاع الحاوية */
-  }
-}
-</style>
-<style scoped>
-.btn-save {
-  @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow;
-}
-
-.btn-delete {
-  @apply bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded shadow;
-}
-
-.form-input {
-  @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm;
 }
 </style>
