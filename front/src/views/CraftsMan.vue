@@ -1,4 +1,5 @@
 <template>
+  <div>
   <NavBarR/>
   <div class="flex flex-col container min-h-screen p-6 bg-white shadow">
     <!-- المحتوى الأساسي للصفحة -->
@@ -129,6 +130,7 @@
 </Modal>
 
   <footer-f class="z-30"></footer-f>
+</div>
 </template>
 
 <script setup>

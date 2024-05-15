@@ -11,12 +11,8 @@
           class="border border-gray-300 rounded-lg p-2"
         >
           <option value="">اختر الحرفة</option>
-          <option
-            v-for="(craftsmen, craft) in craftsGroupedByType"
-            :value="craft"
-            :key="craft"
-          >
-            {{ craft }}
+          <option v-for="type in craftsmanTypes" :value="type" :key="type">
+            {{ type }}
           </option>
         </select>
         <select
@@ -30,30 +26,30 @@
         </select>
       </div>
       <div
-        v-for="(craftsmen, craft) in filteredCraftsmen"
-        :key="craft"
+        v-for="(craftsmen, type) in filteredCraftsmen"
+        :key="type"
         class="mb-28"
       >
         <h3 class="text-3xl font-marhey my-10 mr-10 text-gray-800">
-          {{ craft }}
+          {{ type }}
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div
             v-for="craftsman in craftsmen"
             :key="craftsman.id"
-            @click="gotocraft"
+            @click="gotocraft(craftsman.id)"
             class="flex flex-col items-center p-6 border rounded-xl shadow-xl bg-white bg-opacity-50 cursor-pointer hover:shadow-2xl transition-shadow duration-300 ease-in-out"
           >
             <img
-              :src="craftsman.image"
-              alt="صورة الحرفي"
+              :src="craftsman.ProfileImg"
+              :alt="craftsman.name"
               class="w-32 h-32 rounded-full border-2 border-gray-300"
             />
             <h2 class="text-xl font-bold mt-4">{{ craftsman.name }}</h2>
             <div class="flex items-center mt-2" dir="ltr">
               <star-rating :rating="craftsman.rating"></star-rating>
             </div>
-            <p class="text-md mt-2 text-gray-500">{{ craftsman.workZone }}</p>
+            <p class="text-md mt-2 text-gray-500">{{ craftsman.place }}</p>
           </div>
         </div>
       </div>
@@ -66,6 +62,7 @@
 import NavBarR from "../components/NavBarR.vue";
 import StarRating from "../components/StarRating.vue";
 import FooterF from "../components/FooterF.vue";
+import { craftsmen, getCraftsmenByType } from "@/assets/data.js";
 
 export default {
   name: "CraftsmenList",
@@ -74,102 +71,36 @@ export default {
     FooterF,
     NavBarR,
   },
-  methods: {
-    gotocraft() {
-      this.$router.push("/craftsman");
-    },
-  },
   data() {
     return {
+      craftsmen: craftsmen,
       selectedCraft: "",
       selectedRating: 0,
       // Example structure for craftsmen organized by craft type
-      craftsGroupedByType: {
-        "صباغون :": [
-          {
-            id: 1,
-            name: "Alice Smith",
-            rating: 2,
-            workZone: "Uptown",
-            image: "/HirfaType/Build.jpg",
-          },
-          {
-            id: 2,
-            name: "Alice Smith",
-            rating: 1,
-            workZone: "Uptown",
-            image: "/HirfaType/Build.jpg",
-          },
-          {
-            id: 3,
-            name: "Alice Smith",
-            rating: 3,
-            workZone: "Uptown",
-            image: "/HirfaType/Build.jpg",
-          },
-        ],
-        "كهربائيون :": [
-          {
-            id: 4,
-            name: "Bob Johnson",
-            rating: 4,
-            workZone: "Downtown",
-            image: "/HirfaType/Build.jpg",
-          },
-          {
-            id: 5,
-            name: "Bob Johnson",
-            rating: 5,
-            workZone: "Downtown",
-            image: "/HirfaType/Build.jpg",
-          },
-          {
-            id: 6,
-            name: "Bob Johnson",
-            rating: 2.5,
-            workZone: "Downtown",
-            image: "/HirfaType/Build.jpg",
-          },
-          // ...more electricians
-        ],
-        "سباكون :": [
-          {
-            id: 7,
-            name: "Bob Johnson",
-            rating: 4.5,
-            workZone: "Downtown",
-            image: "/HirfaType/Build.jpg",
-          },
-          {
-            id: 8,
-            name: "Bob Johnson",
-            rating: 4.5,
-            workZone: "Downtown",
-            image: "/HirfaType/Build.jpg",
-          },
-          {
-            id: 9,
-            name: "Bob Johnson",
-            rating: 4.5,
-            workZone: "Downtown",
-            image: "/HirfaType/Build.jpg",
-          },
-        ],
-        // ...other crafts
-      },
     };
   },
+  methods: {
+    gotocraft(craftsmanId) {
+      this.$router.push({ name: 'craftsmanprofile', params: { id: craftsmanId } });
+    },
+    getCraftsmenByType,
+  },
   computed: {
+    craftsmanTypes() {
+      return [...new Set(this.craftsmen.map((craftsman) => craftsman.type))];
+    },
     filteredCraftsmen() {
-      if (!this.selectedCraft && this.selectedRating === 0) {
-        return this.craftsGroupedByType;
-      }
       let filtered = {};
-      for (let craft in this.craftsGroupedByType) {
-        if (!this.selectedCraft || this.selectedCraft === craft) {
-          filtered[craft] = this.craftsGroupedByType[craft].filter(
-            (craftsman) => craftsman.rating > this.selectedRating
+      for (let type of this.craftsmanTypes) {
+        let craftsmenOfType = this.craftsmen.filter((craftsman) => {
+          return (
+            craftsman.type === type &&
+            craftsman.rating >= this.selectedRating &&
+            (this.selectedCraft === "" || craftsman.type === this.selectedCraft)
           );
+        });
+        if (craftsmenOfType.length > 0) {
+          filtered[type] = craftsmenOfType;
         }
       }
       return filtered;

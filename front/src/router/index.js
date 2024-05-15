@@ -12,6 +12,7 @@ import CraftsManSettings from '@/views/CraftsManSettings.vue'
 import CustomerDash from '@/views/CustomerDash.vue'
 import PoliciesAndTerms from '@/views/PoliciesAndTerms.vue'
 import AdminDashboard from '@/views/AdminDashboard.vue'
+import CraftsManProfile from '@/views/CraftsManProfile.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,12 @@ const router = createRouter({
       path: '/craftsman',
       name: 'craftsman',
       component: CraftsMan
+    },
+    {
+      path: '/craftsmanprofile/:id',
+      name: 'craftsmanprofile',
+      component: CraftsManProfile,
+      props: true,
     },
     {
       path: '/craftsmen',

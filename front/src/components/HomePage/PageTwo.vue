@@ -6,13 +6,13 @@
     >
       <div
         v-for="craftsman in sortedCards"
-        :key="craftsman.order"
-        :class="{ 'md:mb-36': craftsman.order === 2 }"
+        :key="craftsman.rank"
+        :class="{ 'md:mb-36': craftsman.rank === 1 }"
         class="relative card bg-white bg-opacity-60 mt-20 md:mt-0"
-        @click="gotocraft"
+        @click="gotocraft(craftsman.id)"
       >
         <img
-          :src="craftsman.image"
+          :src="craftsman.ProfileImg"
           :alt="craftsman.name"
           class="card-img border rounded-3xl  shadow-xl bg-white bg-opacity-50 cursor-pointer hover:shadow-2xl transition-shadow duration-300 ease-in-out absolute -top-10 left-1/2 transform -translate-x-1/2"
         />
@@ -31,48 +31,47 @@
 
 <script setup>
 import StarRating from "../StarRating.vue";
+import { craftsmen, best_craftsmen } from '@/assets/data.js';
 </script>
 
 <script>
 export default {
   data() {
     return {
-      craftsmen: [
-        {
-          id: 1,
-          name: "حرفي 1",
-          hirfa: " صباغ ",
-          rating: 2.9,
-          image: "/HirfaType/Build.jpg",
-          order: 2,
-        },
-        {
-          id: 2,
-          name: "حرفي 2",
-          hirfa: " بناء ",
-          rating: 3.5,
-          image: "/HirfaType/Build.jpg",
-          order: 1,
-        },
-        {
-          id: 3,
-          name: "حرفي 3",
-          hirfa: " كهربائي ",
-          rating: 4.8,
-          image: "/HirfaType/Build.jpg",
-          order: 3,
-        },
-      ],
+      
     };
   },
   computed: {
     sortedCards() {
-      return this.craftsmen.sort((a, b) => a.order - b.order);
-    },
+    // إعادة ترتيب الحرفيين بحيث يكون الحرفي رقم 1 في المنتصف
+    const rankedCraftsmen = this.bestCraftsmenDetailed.slice(); // نسخة من المصفوفة
+    const firstRankedIndex = rankedCraftsmen.findIndex(c => c.rank === 1);
+
+    if (firstRankedIndex > -1) {
+      // إزالة الحرفي برتبة 1 من مكانه الأصلي
+      const [firstRankedCraftsman] = rankedCraftsmen.splice(firstRankedIndex, 1);
+      // إضافة الحرفي برتبة 1 في المنتصف
+      rankedCraftsmen.splice(Math.floor(rankedCraftsmen.length / 2), 0, firstRankedCraftsman);
+    }
+    
+    return rankedCraftsmen;
+  },
+    bestCraftsmenDetailed() {
+      return best_craftsmen.map(craftsman => {
+        const detail = craftsmen.find(c => c.id === craftsman.id);
+        return {
+          ...detail,
+          rank: craftsman.rank  // دمج الترتيب في البيانات المفصلة
+        };
+      });
+    }
   },
   methods: {
-    gotocraft(){
-      this.$router.push('/craftsman');
+    gotocraft(craftsmanId) {
+      this.$router.push({ name: 'craftsmanprofile', params: { id: craftsmanId } });
+    },
+    getCraftsmanById(id) {
+      return craftsmen.find(craftsman => craftsman.id === id);
     }
   },
 };
