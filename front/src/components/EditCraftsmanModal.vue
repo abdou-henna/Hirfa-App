@@ -1,6 +1,6 @@
 <template>
   <div class="fixed inset-0 bg-black bg-opacity-75 flex justify-center p-4 z-50 overflow-scroll" dir="rtl">
-    <div class="bg-white p-5 rounded-lg flex flex-col max-w-lg w-full shadow-lg relative overflow-scroll" @click.stop>
+    <div class="bg-white p-5 rounded-lg flex flex-col max-w-xl w-full shadow-lg relative overflow-scroll" @click.stop>
       <h2 class="text-xl font-bold mb-4 text-center">تعديل بيانات الحرفي</h2>
       <div class="space-y-4">
         <div class="flex flex-col items-center">

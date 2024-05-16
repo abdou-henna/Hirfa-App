@@ -204,7 +204,7 @@ export default {
       postes: [
         {
           id: 1,
-          image: "https://via.placeholder.com/300",
+          image: "../public/craftsmen/tailor/gallery/work1.jpg",
           userImage: "../public/HirfaType/Build.jpg",
           userName: "مستخدم 1",
           timestamp: "3/29/2024, 10:00:00 AM",
@@ -217,7 +217,7 @@ export default {
         },
         {
           id: 2,
-          image: "https://via.placeholder.com/300",
+          image: "../public/craftsmen/plumber/gallery/work2.jpg",
           userImage: "../public/HirfaType/Build.jpg",
           userName: "مستخدم 2",
           timestamp: "3/30/2024, 2:00:00 PM",
@@ -230,7 +230,7 @@ export default {
         },
         {
           id: 3,
-          image: "https://via.placeholder.com/300",
+          image: "../public/craftsmen/carpenter/gallery/work5.jpg",
           userImage: "../public/HirfaType/Build.jpg",
           userName: "مستخدم 3",
           timestamp: "3/31/2024, 4:00:00 PM",
@@ -243,7 +243,7 @@ export default {
         },
         {
           id: 4,
-          image: "https://via.placeholder.com/300",
+          image: "../public/craftsmen/electrician/gallery/work4.jpg",
           userImage: "../public/HirfaType/Build.jpg",
           userName: "مستخدم 3",
           timestamp: "3/31/2024, 4:00:00 PM",
@@ -256,7 +256,7 @@ export default {
         },
         {
           id: 5,
-          image: "https://via.placeholder.com/300",
+          image: "../public/craftsmen/painter/gallery/work3.jpg",
           userImage: "../public/HirfaType/Build.jpg",
           userName: "مستخدم 3",
           timestamp: "3/31/2024, 4:00:00 PM",
