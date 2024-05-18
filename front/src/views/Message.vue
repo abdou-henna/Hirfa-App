@@ -1,7 +1,13 @@
 <template>
   <div class="container max-w-3xl mx-auto shadow-lg border rounded-lg overflow-hidden md:h-[800px] h-[100vh] flex flex-col my-auto">
-    <div class="chat-header bg-gray-100 p-4 border-b text-center rounded-lg mt-3">
-      <h2 class="text-xl font-semibold text-gray-900">{{ otherPartyName }}</h2>
+    <div class="relative">
+      <div class="chat-header bg-gray-100 p-4 border-b text-center rounded-lg mt-3">
+        <h2 class="text-xl font-semibold text-gray-900">{{ otherPartyName }}</h2>
+        <div v-if="showRequestButtons" class="mt-2 flex justify-center space-x-4">
+          <button @click="acceptRequest" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">قبول الطلب</button>
+          <button @click="rejectRequest" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">رفض الطلب</button>
+        </div>
+      </div>
     </div>
     <!-- الرسائل مع سكرول -->
     <div class="messages flex-1 overflow-auto p-4 space-y-2" dir="rtl" ref="messagesContainer">
@@ -27,12 +33,12 @@
       <button @click="sendMessage" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ml-2">إرسال</button>
     </div>
     <!-- مودال عرض الصورة بشكل مكبر -->
-<div v-if="selectedImage" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center" @click="selectedImage = null">
-  <img :src="selectedImage" class="max-w-full max-h-full rounded-lg" />
-</div>
-
+    <div v-if="selectedImage" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center" @click="selectedImage = null">
+      <img :src="selectedImage" class="max-w-full max-h-full rounded-lg" />
+    </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -62,6 +68,7 @@ export default {
         // يمكن إضافة المزيد من الرسائل حسب الحاجة
       ],
       selectedImage: null,
+      showRequestButtons: true, // حالة للتحقق من عرض الأزرار
     };
   },
   methods: {
@@ -104,8 +111,17 @@ export default {
         reader.readAsDataURL(file);
       }
     },
+    acceptRequest() {
+      alert("تم قبول الطلب");
+      this.showRequestButtons = false;
+    },
+    rejectRequest() {
+      alert("تم رفض الطلب");
+      this.showRequestButtons = false;
+    }
   },
 };
+
 </script>
 
 <style scoped>

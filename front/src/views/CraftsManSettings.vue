@@ -96,7 +96,7 @@ const craftsman = ref(null);
 const showEditModal = ref(false);
 
 onMounted(() => {
-  const id = 5;
+  const id = 6;
 
   const foundCraftsman = craftsmen.find((c) => c.id === id);
   if (foundCraftsman) {

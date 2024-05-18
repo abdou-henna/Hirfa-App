@@ -13,6 +13,7 @@ import CustomerDash from '@/views/CustomerDash.vue'
 import PoliciesAndTerms from '@/views/PoliciesAndTerms.vue'
 import AdminDashboard from '@/views/AdminDashboard.vue'
 import CraftsManProfile from '@/views/CraftsManProfile.vue'
+import NotFound from '@/components/NotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -87,6 +88,11 @@ const router = createRouter({
       path: '/admindashboard',
       name: 'admindashboard',
       component: AdminDashboard,
+    },
+    {
+      path: '/:catchAll(.*)',
+      name: 'NotFound',
+      component: NotFound,
     },
   ]
 })

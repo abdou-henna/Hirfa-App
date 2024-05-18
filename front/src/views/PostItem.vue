@@ -204,15 +204,15 @@ export default {
       postes: [
         {
           id: 1,
-          image: "../public/craftsmen/tailor/gallery/work1.jpg",
-          userImage: "../public/HirfaType/Build.jpg",
-          userName: "مستخدم 1",
+          image: "../public/craftsmen/carpenter/gallery/work5.jpg",
+          userImage: "../public/craftsmen/carpenter/carpenter1.jpg",
+          userName: "عبد العالي دوح",
           timestamp: "3/29/2024, 10:00:00 AM",
-          title: "عنوان البوست الأول",
+          title: "إعادة بناء مطبخ المنزل",
           content:
-            "محتوى البوست الأول يمكن أن يكون هنا. يمكن أن يتضمن البوست معلومات مختلفة أو قصص أو أي شيء آخر تريده.",
-          category: "حرفة 1",
-          userId: "user3",
+            "أريد أعادة بناء مطبخ نزلي ليصبح بشكل و تصميم عصري و أبحث عن من يمكنه فعل ذلك بأقل تطلفة و بأسرع وقت",
+          category: "نجار",
+          userId: "user1",
           isCompleted: false,
         },
         {

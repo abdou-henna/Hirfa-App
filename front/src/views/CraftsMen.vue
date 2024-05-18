@@ -6,13 +6,19 @@
         قائمة الحرفيين
       </h1>
       <div class="flex justify-start mb-10 mr-8">
+        <input
+          type="text"
+          v-model="searchQuery"
+          placeholder="ابحث عن الحرفي بالاسم"
+          class="border border-gray-300 rounded-lg p-2 ml-4"
+        />
         <select
           v-model="selectedCraft"
           class="border border-gray-300 rounded-lg p-2"
         >
           <option value="">اختر الحرفة</option>
-          <option v-for=" type in craftsmanTypes" :value="type" :key="type" >
-            {{ type }}
+          <option v-for="typpe in craftsmanTypes" :value="typpe" :key="typpe">
+            {{ typpe }}
           </option>
         </select>
         <select
@@ -58,6 +64,7 @@
   </div>
 </template>
 
+
 <script>
 import NavBarR from "../components/NavBarR.vue";
 import StarRating from "../components/StarRating.vue";
@@ -76,12 +83,16 @@ export default {
       craftsmen: craftsmen,
       selectedCraft: "",
       selectedRating: 0,
+      searchQuery: "", // إضافة حقل البحث
       // Example structure for craftsmen organized by craft type
     };
   },
   methods: {
     gotocraft(craftsmanId) {
-      this.$router.push({ name: 'craftsmanprofile', params: { id: craftsmanId } });
+      this.$router.push({
+        name: "craftsmanprofile",
+        params: { id: craftsmanId },
+      });
     },
     getCraftsmenByType,
   },
@@ -96,7 +107,8 @@ export default {
           return (
             craftsman.type === type &&
             craftsman.rating >= this.selectedRating &&
-            (this.selectedCraft === "" || craftsman.type === this.selectedCraft)
+            (this.selectedCraft === "" || craftsman.type === this.selectedCraft) &&
+            (this.searchQuery === "" || craftsman.name.includes(this.searchQuery))
           );
         });
         if (craftsmenOfType.length > 0) {
@@ -107,6 +119,7 @@ export default {
     },
   },
 };
+
 </script>
 
 <style scoped>

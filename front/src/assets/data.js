@@ -7,6 +7,7 @@ export const craftsmen = [
       place: "القاهرة",
       price: 200,
       rating: 4.5,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: " مشروع انشاء منزل خشبي بالكامل تم انجازه من قبل معملنا ", alt: "ورشة نجارة", src: "../../public/Craftsmen/Carpenter/gallery/work1.jpg" },
         { id: 102, description: " مشروع انشاء منزل خشبي بالكامل تم انجازه من قبل معملنا ", alt: "ورشة نجارة", src: "../../public/Craftsmen/Carpenter/gallery/work2.jpg" },
@@ -25,6 +26,7 @@ export const craftsmen = [
       place: "قمار",
       price: 200,
       rating: 5.0,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: " مشروع انشاء منزل خشبي بالكامل تم انجازه من قبل معملنا ", alt: "ورشة نجارة", src: "../../public/Craftsmen/Carpenter/gallery/work1.jpg" },
         { id: 101, description: " مشروع انشاء منزل خشبي بالكامل تم انجازه من قبل معملنا ", alt: "ورشة نجارة", src: "../../public/Craftsmen/Carpenter/gallery/work2.jpg" },
@@ -43,6 +45,7 @@ export const craftsmen = [
       place: "الإسكندرية",
       price: 150,
       rating: 1.5,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض من أعمال الخياطة الخاصة بنا", alt: "ورشة خياطة", src: "../../public/Craftsmen/tailor/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض من أعمال الخياطة الخاصة بنا", alt: "ورشة خياطة", src: "../../public/Craftsmen/tailor/gallery/work2.jpg" },
@@ -61,6 +64,7 @@ export const craftsmen = [
       place: "الإسكندرية",
       price: 150,
       rating: 2.5,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض من أعمال الخياطة الخاصة بنا", alt: "ورشة خياطة", src: "../../public/Craftsmen/tailor/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض من أعمال الخياطة الخاصة بنا", alt: "ورشة خياطة", src: "../../public/Craftsmen/tailor/gallery/work2.jpg" },
@@ -79,6 +83,7 @@ export const craftsmen = [
       place: "الإسكندرية",
       price: 150,
       rating: 3.8,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض من أعمال الخياطة الخاصة بنا", alt: "ورشة خياطة", src: "../../public/Craftsmen/tailor/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض من أعمال الخياطة الخاصة بنا", alt: "ورشة خياطة", src: "../../public/Craftsmen/tailor/gallery/work2.jpg" },
@@ -97,6 +102,7 @@ export const craftsmen = [
       place: "قمار",
       price: 100,
       rating: 5.0,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض الماكينات التي قمنا بأصلاحها", alt: "ورشة ميكانيكي", src: "../../public/Craftsmen/mechanical/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض الماكينات التي قمنا بأصلاحها", alt: "ورشة ميكانيكي", src: "../../public/Craftsmen/mechanical/gallery/work2.jpg" },
@@ -115,6 +121,7 @@ export const craftsmen = [
       place: "الجيزة",
       price: 100,
       rating: 4.0,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض الماكينات التي قمنا بأصلاحها", alt: "ورشة ميكانيكي", src: "../../public/Craftsmen/mechanical/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض الماكينات التي قمنا بأصلاحها", alt: "ورشة ميكانيكي", src: "../../public/Craftsmen/mechanical/gallery/work2.jpg" },
@@ -133,6 +140,7 @@ export const craftsmen = [
       place: "قمار",
       price: 100,
       rating: 5.0,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض الماكينات التي قمنا بأصلاحها", alt: "ورشة ميكانيكي", src: "../../public/Craftsmen/mechanical/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض الماكينات التي قمنا بأصلاحها", alt: "ورشة ميكانيكي", src: "../../public/Craftsmen/mechanical/gallery/work2.jpg" },
@@ -151,6 +159,7 @@ export const craftsmen = [
       place: "غمرة",
       price: 80,
       rating: 3.7,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة كهربائي", src: "../../public/Craftsmen/electrician/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة كهربائي", src: "../../public/Craftsmen/electrician/gallery/work2.jpg" },
@@ -169,6 +178,7 @@ export const craftsmen = [
       place: "تغزوت",
       price: 80,
       rating: 2.7,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة كهربائي", src: "../../public/Craftsmen/electrician/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة كهربائي", src: "../../public/Craftsmen/electrician/gallery/work2.jpg" },
@@ -187,6 +197,7 @@ export const craftsmen = [
       place: "الوادي",
       price: 80,
       rating: 4.7,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة كهربائي", src: "../../public/Craftsmen/electrician/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة كهربائي", src: "../../public/Craftsmen/electrician/gallery/work2.jpg" },
@@ -205,6 +216,7 @@ export const craftsmen = [
       place: "قمار",
       price: 120,
       rating: 3.3,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة صباغة", src: "../../public/Craftsmen/painter/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة صباغة", src: "../../public/Craftsmen/painter/gallery/work2.jpg" },
@@ -223,6 +235,7 @@ export const craftsmen = [
       place: "قمار",
       price: 120,
       rating: 4.3,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة صباغة", src: "../../public/Craftsmen/painter/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة صباغة", src: "../../public/Craftsmen/painter/gallery/work2.jpg" },
@@ -241,6 +254,7 @@ export const craftsmen = [
       place: "قمار",
       price: 120,
       rating: 5.0,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة صباغة", src: "../../public/Craftsmen/painter/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة صباغة", src: "../../public/Craftsmen/painter/gallery/work2.jpg" },
@@ -260,6 +274,7 @@ export const craftsmen = [
       place: "شرم الشيخ",
       price: 180,
       rating: 4.2,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة بناء", src: "../../public/Craftsmen/Construction/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة بناء", src: "../../public/Craftsmen/Construction/gallery/work2.jpg" },
@@ -278,6 +293,7 @@ export const craftsmen = [
       place: "قمار",
       price: 180,
       rating: 4.2,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة بناء", src: "../../public/Craftsmen/Construction/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض أعمالنا داخل البيوت و مناطق البناء", alt: "ورشة بناء", src: "../../public/Craftsmen/Construction/gallery/work2.jpg" },
@@ -297,6 +313,7 @@ export const craftsmen = [
       place: "الإسماعيلية",
       price: 140,
       rating: 4.4,
+      joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: "هذه بعض أعمالنا في السباكة ", alt: "ورشة سباكة", src: "../../public/Craftsmen/plumber/gallery/work1.jpg" },
         { id: 101, description: "هذه بعض أعمالنا في السباكة ", alt: "ورشة سباكة", src: "../../public/Craftsmen/plumber/gallery/work2.jpg" },
@@ -307,6 +324,29 @@ export const craftsmen = [
         { id: 101, description: "هذه بعض أعمالنا في السباكة ", alt: "ورشة سباكة", src: "../../public/Craftsmen/plumber/gallery/work7.jpg" },
       ]
     }
+  ];
+  export const users = [
+    { id: 1, name: "عبد الرحمن محمد", email: "user1@example.com", joinDate: "2023-01-01" },
+    { id: 2, name: "سارة أحمد", email: "user2@example.com", joinDate: "2023-02-01" },
+    // إضافة 18 مستخدمًا آخرين
+    { id: 3, name: "ياسين خالد", email: "user3@example.com", joinDate: "2023-03-01" },
+    { id: 4, name: "مريم سمير", email: "user4@example.com", joinDate: "2023-04-01" },
+    { id: 5, name: "خالد نور", email: "user5@example.com", joinDate: "2023-05-01" },
+    { id: 6, name: "نهى فؤاد", email: "user6@example.com", joinDate: "2023-06-01" },
+    { id: 7, name: "محمود علي", email: "user7@example.com", joinDate: "2023-07-01" },
+    { id: 8, name: "ريما حسن", email: "user8@example.com", joinDate: "2023-08-01" },
+    { id: 9, name: "نور الدين سعيد", email: "user9@example.com", joinDate: "2023-09-01" },
+    { id: 10, name: "فاطمة زينب", email: "user10@example.com", joinDate: "2023-10-01" },
+    { id: 11, name: "علي رضا", email: "user11@example.com", joinDate: "2023-11-01" },
+    { id: 12, name: "هبة يوسف", email: "user12@example.com", joinDate: "2023-12-01" },
+    { id: 13, name: "سمية نادر", email: "user13@example.com", joinDate: "2023-01-15" },
+    { id: 14, name: "طارق جميل", email: "user14@example.com", joinDate: "2023-02-15" },
+    { id: 15, name: "لينا محمود", email: "user15@example.com", joinDate: "2023-03-15" },
+    { id: 16, name: "سيف أحمد", email: "user16@example.com", joinDate: "2023-04-15" },
+    { id: 17, name: "جمال علي", email: "user17@example.com", joinDate: "2023-05-15" },
+    { id: 18, name: "مايا خالد", email: "user18@example.com", joinDate: "2023-06-15" },
+    { id: 19, name: "رامي حسن", email: "user19@example.com", joinDate: "2023-07-15" },
+    { id: 20, name: "ندى سمير", email: "user20@example.com", joinDate: "2023-08-15" },
   ];
   export const best_craftsmen = [
     { id: 14, rank: 1 },  

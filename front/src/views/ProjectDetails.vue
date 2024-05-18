@@ -41,7 +41,7 @@
       return {
         project: {
           title: "تجديد المنزل الريفي",
-          image: "/build1.jpg",
+          image: "../../public/craftsmen/carpenter/gallery/work7.jpg",
           description: "وصف مفصل للمشروع، بما في ذلك التحديات التي تم التغلب عليها، الحلول المبتكرة التي تم استخدامها، والنتائج النهائية.",
           craftsman: "أحمد الحرفي",
           duration: "3 أشهر",
