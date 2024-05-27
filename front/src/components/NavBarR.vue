@@ -93,7 +93,7 @@ export default {
       showNotifications: false,
       UserSingIn: {
         name: "عبد الرحمان حنه",
-        image: "../public/abdou.jpg",
+        image: "../../public/abdou.jpg",
       },
       notifications: [
         { id: 1, type: "site", text: "إشعار جديد 1", href: "#" },

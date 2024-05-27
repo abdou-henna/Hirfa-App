@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <NavBarR />
     <div
       class="flex flex-col container min-h-screen p-6 bg-white shadow"
@@ -65,7 +65,7 @@
         </div>
       </div>
       <!-- زر الاتصال بالحرفي -->
-      <div class="flex justify-center my-20" dir="rtl">
+      <div v-if="!isOwner" class="flex justify-center my-20" dir="rtl">
         <create-post-form Forfor="إرسال الطلب" :post="false" />
       </div>
     </div>
@@ -152,7 +152,7 @@ const reviews = ref([
   { id: 4, rating: 3.5, customerName: "عميل 4", comment: "عمل ممتاز!" },
   // أضف المزيد من التقييمات هنا
 ]);
-const isOwner = ref(true); // يُفترض أن هذه القيمة ستتحدد بناءً على ما إذا كان المستخدم هو صاحب الصفحة
+const isOwner = ref(false); // يُفترض أن هذه القيمة ستتحدد بناءً على ما إذا كان المستخدم هو صاحب الصفحة
 
 onMounted(() => {
   const id = parseInt(route.params.id);

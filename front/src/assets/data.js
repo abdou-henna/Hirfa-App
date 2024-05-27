@@ -29,7 +29,6 @@ export const craftsmen = [
       joinDate: "2023-01-10",
       craftsmanGallery: [
         { id: 101, description: " مشروع انشاء منزل خشبي بالكامل تم انجازه من قبل معملنا ", alt: "ورشة نجارة", src: "../../public/Craftsmen/Carpenter/gallery/work1.jpg" },
-        { id: 101, description: " مشروع انشاء منزل خشبي بالكامل تم انجازه من قبل معملنا ", alt: "ورشة نجارة", src: "../../public/Craftsmen/Carpenter/gallery/work2.jpg" },
         { id: 101, description: " مشروع انشاء منزل خشبي بالكامل تم انجازه من قبل معملنا ", alt: "ورشة نجارة", src: "../../public/Craftsmen/Carpenter/gallery/work3.jpg" },
         { id: 101, description: " مشروع انشاء منزل خشبي بالكامل تم انجازه من قبل معملنا ", alt: "ورشة نجارة", src: "../../public/Craftsmen/Carpenter/gallery/work4.jpg" },
         { id: 101, description: " مشروع انشاء منزل خشبي بالكامل تم انجازه من قبل معملنا ", alt: "ورشة نجارة", src: "../../public/Craftsmen/Carpenter/gallery/work5.jpg" },
@@ -192,7 +191,7 @@ export const craftsmen = [
     {
       id: 11,
       ProfileImg: "../../public/Craftsmen/electrician/electrician3.jpg",
-      name: "مختار زان",
+      name: "زان محمد مختار",
       type: "كهربائي",
       place: "الوادي",
       price: 80,
@@ -230,7 +229,7 @@ export const craftsmen = [
     {
       id: 13,
       ProfileImg: "../../public/Craftsmen/painter/painter2.jpg",
-      name: "طه تلفاز",
+      name: "طه نعورة",
       type: "صباغ",
       place: "قمار",
       price: 120,

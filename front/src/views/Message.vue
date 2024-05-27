@@ -49,26 +49,43 @@ export default {
       messages: [
         {
           name: "عبد العالي دوح",
-          text: "أهلا عبد الرحمان هذا تجريب فقط",
-          avatar: "../public/build1.jpg",
-          image: "../public/build2.jpg", // هنا يتم تعيين الصورة على null للرسائل بدون صور
+          text: "أهلاً ، ما تكلفة بناء جدار بطول 10 أمتار وارتفاع 3 أمتار؟",
+          avatar: "../public/craftsmen/painter/painter3.jpg",
+          image: null, 
           sent: false,
           timestamp: "10:00 AM",
           seen: true,
         }, 
         {
           name: "أنت",
-          text: "أهلا عبد العالي نعم نحن نجرب هذا فقط",
-          avatar: "../public/build1.jpg",
-          image: null, // هنا أيضًا
+          text: "تبلغ تكلفة بناء الجدار بالرخام حوالي 5000 دينار. إليك صورة لمشروع مشابه قمت به مؤخرًا.",
+          avatar:  "../public/craftsmen/Construction/Construction1.jpg",
+          image: "../public/wall.jpg", 
           sent: true,
           timestamp: "10:02 AM",
           seen: true,
         },
-        // يمكن إضافة المزيد من الرسائل حسب الحاجة
+        {
+          name: "عبد العالي دوح",
+          text: "ممتاز، هل يمكننا البدء الأسبوع القادم؟",
+          avatar: "../public/craftsmen/painter/painter3.jpg",
+          image: null, 
+          sent: false,
+          timestamp: "10:03 AM",
+          seen: true,
+        }, 
+        {
+          name: "أنت",
+          text: "تبلغ تكلفة بناء الجدار بالرخام حوالي 5000 دينار. إليك صورة لمشروع مشابه قمت به مؤخرًا.",
+          avatar:  "../public/craftsmen/Construction/Construction1.jpg",
+          image: null, 
+          sent: true,
+          timestamp: "10:05 AM",
+          seen: true,
+        },
       ],
       selectedImage: null,
-      showRequestButtons: true, // حالة للتحقق من عرض الأزرار
+      showRequestButtons: true, 
     };
   },
   methods: {

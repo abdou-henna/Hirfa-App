@@ -66,7 +66,7 @@ export default {
           userAddress: "الجزائر",
           profileImg: "../../../public/Craftsmen/electrician/electrician3.jpg",
           subject: "تجديد المطبخ بالكامل، تغيير الأرضيات والخزائن.",
-          attachment: "../../../public/Craftsmen/electrician/gallery/work3.jpg",
+          attachment: "../../../public/Craftsmen/carpenter/gallery/work5.jpg",
         },
         // المزيد من الطلبات هنا
       ],
