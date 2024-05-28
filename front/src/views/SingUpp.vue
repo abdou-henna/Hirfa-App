@@ -6,10 +6,7 @@
       <img src="../../public/HomeImg.jpg" class="w-[80%] place-self-center" />
     </div>
     <div class="w-1/2 flex items-center justify-center">
-      <form
-        @submit.prevent="submitIdentityConfirmation"
-        class="w-[80%] m-auto h-full"
-      >
+      <div class="w-[80%] m-auto h-full">
         <header class="w-full h-[50px] mt-10">
           <RouterLink to="/">
           <img
@@ -72,16 +69,17 @@
                 }}</label>
               </div>
             </div>
-            <button type="submit" class="form-button">تأكيد الهوية</button>
+            <button type="submit" @click="submitIdentityConfirmation()" class="form-button">تأكيد الهوية</button>
           </div>
         </section>
-        <footer></footer>
-      </form>
+        
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -101,27 +99,17 @@ export default {
     },
     async submitIdentityConfirmation() {
       const formData = new FormData();
-      if (this.personalPhoto)
-        formData.append("personalPhoto", this.personalPhoto);
+      if (this.personalPhoto) formData.append("personalPhoto", this.personalPhoto);
       if (this.idCard) formData.append("idCard", this.idCard);
-      if (this.craftCertificate)
-        formData.append("craftCertificate", this.craftCertificate);
-
+      if (this.craftCertificate) formData.append("craftCertificate", this.craftCertificate);
+      const config = {
+					headers: {
+						'Content-Type': 'multipart/form-data',
+					}};
       try {
-        // Replace 'YOUR_IDENTITY_CONFIRMATION_API_ENDPOINT' with your actual endpoint
-        const response = await axios.post(
-          "YOUR_IDENTITY_CONFIRMATION_API_ENDPOINT",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        // Handle success
+        const response = await axios.post('/complete_register', formData, config);
         console.log("Identity confirmed successfully", response);
       } catch (error) {
-        // Handle error
         console.error("Error confirming identity", error);
       }
     },

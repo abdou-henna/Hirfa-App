@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('username')->unique();
             $table->string('phone');
             $table->string('gender');
             $table->date('birthDate');

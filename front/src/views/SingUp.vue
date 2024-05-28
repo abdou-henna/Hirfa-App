@@ -78,7 +78,12 @@
               <option value="client">عـمــيل</option>
               <option value="craftsman">حــرفـي</option>
             </select>
-            <date-picker v-model="user.birthDate" />
+            <input
+              v-model="user.birthDate"
+              type="date"
+              placeholder="تاريخ الميلاد"
+              class="input-style w-full"
+            />
             <button
               type="submit"
               class="mt-16 w-full rounded-md bg-[#005CFF] py-2 text-white hover:bg-[#004aca]"
@@ -95,7 +100,7 @@
 <script>
 import DatePicker from "@/components/DatePicker.vue";
 import "v-calendar/style.css";
-import axios from "axios"; // تأكد من تثبيت axios إذا لم يكن مثبتًا بالفعل
+import axios from "axios";
 
 export default {
   components: {
@@ -106,26 +111,37 @@ export default {
       user: {
         firstName: "",
         lastName: "",
-        username: "",
         email: "",
         password: "",
         phone: "",
         gender: "",
         role: "",
-        birthDate: null,
+        birthDate: "",
       },
     };
   },
   methods: {
     async submitForm() {
       try {
-        // استبدل URL بعنوان الـ API الخاص بك
-        const response = await axios.post("YOUR_API_ENDPOINT", this.user);
-        console.log(response.data);
-        // بعد الإرسال بنجاح، يمكنك إعادة توجيه المستخدم أو إظهار رسالة نجاح
+        const response = await axios.post('/register', {
+						firstName:this.user.firstName,
+						lastName:this.user.lastName,
+						password:this.user.password,
+						email:this.user.email,
+            phone:this.user.phone,
+						role:this.user.role,
+						gender:this.user.gender,
+            birthDate:this.user.birthDate,
+					});
+        if (response.data.error == false) {
+						if(this.user.role == "craftsman"){
+              this.$router.push('/singupp');
+            }
+				}else{
+          this.$router.push('/postes');
+        }
       } catch (error) {
-        console.error(error);
-        // يمكنك هنا إظهار رسالة خطأ للمستخدم
+        console.log(error);
       }
     },
   },
