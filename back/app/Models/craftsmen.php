@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class craftsman extends Model
+class craftsmen extends Model
 {
     use HasFactory;
     public $table = "craftsmen";
     protected $fillable = [
         'firstName',
         'lastName',
-        'username',
         'password',
         'email',
         'phone',
@@ -24,6 +23,7 @@ class craftsman extends Model
         'image',
         'place',
         'birth_date',
+        'activate',
         'id_craft'
     ];
     public function crafts(){

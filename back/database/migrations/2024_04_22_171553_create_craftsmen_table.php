@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('username')->unique();
             $table->string('password');
             $table->string('email')->unique();
             $table->string('phone');
@@ -27,6 +26,7 @@ return new class extends Migration
             $table->double('rating',10)->default(0);
             $table->string('gender');          
             $table->integer('number_clients')->default(0);
+            $table->integer('activate')->default(0);
             $table->string('image')->nullable();
             $table->string('place')->nullable();
             $table->date('birth_date');           

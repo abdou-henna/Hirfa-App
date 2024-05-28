@@ -5,12 +5,18 @@
     >
       <img src="../../public/HomeImg.jpg" class="w-[80%] place-self-center" />
     </div>
+<<<<<<< HEAD
     <div class="md:w-1/2 w-full  flex ">
       <form
       @submit="submitIdentityConfirmation"
         class="w-[80%] m-auto  h-full"
       >
         <header class="w-full h-[50px]  m-auto  mt-10">
+=======
+    <div class="w-1/2 flex items-center justify-center">
+      <div class="w-[80%] m-auto h-full">
+        <header class="w-full h-[50px] mt-10">
+>>>>>>> 097d2aa90ea183dc02b5d4ee529e014fa1787a59
           <RouterLink to="/">
             <img
               src="../../public/Hirfa.png"
@@ -72,16 +78,17 @@
                 }}</label>
               </div>
             </div>
-            <button type="submit" class="form-button">تأكيد الهوية</button>
+            <button type="submit" @click="submitIdentityConfirmation()" class="form-button">تأكيد الهوية</button>
           </div>
         </section>
-        <footer></footer>
-      </form>
+        
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -101,9 +108,9 @@ export default {
     },
     submitIdentityConfirmation() {
       const formData = new FormData();
-      if (this.personalPhoto)
-        formData.append("personalPhoto", this.personalPhoto);
+      if (this.personalPhoto) formData.append("personalPhoto", this.personalPhoto);
       if (this.idCard) formData.append("idCard", this.idCard);
+<<<<<<< HEAD
       if (this.craftCertificate)
         formData.append("craftCertificate", this.craftCertificate);
 
@@ -119,6 +126,19 @@ export default {
         .catch((error) => {
           console.error("Error sending identity information:", error);
         });
+=======
+      if (this.craftCertificate) formData.append("craftCertificate", this.craftCertificate);
+      const config = {
+					headers: {
+						'Content-Type': 'multipart/form-data',
+					}};
+      try {
+        const response = await axios.post('/complete_register', formData, config);
+        console.log("Identity confirmed successfully", response);
+      } catch (error) {
+        console.error("Error confirming identity", error);
+      }
+>>>>>>> 097d2aa90ea183dc02b5d4ee529e014fa1787a59
     },
   },
 };
