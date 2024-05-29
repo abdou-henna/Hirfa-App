@@ -24,10 +24,10 @@ class craftsmen extends Model
         'place',
         'birth_date',
         'activate',
-        'id_craft'
+        'id_crafts'
     ];
     public function crafts(){
-        return $this->belongsTo('App\Models\craft','id_craft','id');
+        return $this->belongsTo('App\Models\craft','id_crafts','id');
     }
     public function image_craftsmens(){
         return $this->hasMany('App\Models\image_craftsmens','id_craftsmen','id');

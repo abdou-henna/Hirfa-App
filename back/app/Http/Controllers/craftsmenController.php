@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Storage;
 use App\Models\craftsmen;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class craftsmenController extends Controller
@@ -49,9 +49,22 @@ class craftsmenController extends Controller
             'message'=>"Registration completed successfully",
             'data'=> $lastUser,
             'role' => 'user'
-        ],200);
-
-
-        
+        ],200);       
     }
+    public function show_information_craftsman(Request $request){  
+        $latestCraftsman = craftsmen::with('crafts')->latest()->first();     
+        if ($latestCraftsman) {
+            $latestCraftsman->image_url = url(Storage::url('craftsmen_image/'.$latestCraftsman->image));
+            return response()->json([
+                'error' => false,
+                'data' => $latestCraftsman,
+            ], 200);
+        } else {
+            return response()->json([
+                'error' => true,
+                'message' => 'No craftsmen found',
+            ], 404);
+        }
+    }
+    
 }

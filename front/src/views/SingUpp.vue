@@ -108,7 +108,7 @@ export default {
 					}};
       try {
         const response = await axios.post('/complete_register', formData, config);
-        console.log("Identity confirmed successfully", response);
+        window.location.href = '/craftsman';
       } catch (error) {
         console.error("Error confirming identity", error);
       }
