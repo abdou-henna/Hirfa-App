@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // These route are any userc specific
-//Route::post('login','userController@register');
-
+//Route::post('login','userController@register');//
+Route::post('get_crafts','craftsmenController@get_craft');
 // These route are user specific 
 Route::post('register','userController@register');
 
@@ -26,3 +26,4 @@ Route::post('register','userController@register');
 // These route are user specific craftsmen 
 Route::post('complete_register','craftsmenController@complete_register');//
 Route::post('show_information_craftsman','craftsmenController@show_information_craftsman');
+Route::post('update_craftsman','craftsmenController@update_craftsman');

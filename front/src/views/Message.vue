@@ -1,7 +1,13 @@
 <template>
   <div class="container max-w-3xl mx-auto shadow-lg border rounded-lg overflow-hidden md:h-[800px] h-[100vh] flex flex-col my-auto">
-    <div class="chat-header bg-gray-100 p-4 border-b text-center rounded-lg mt-3">
-      <h2 class="text-xl font-semibold text-gray-900">{{ otherPartyName }}</h2>
+    <div class="relative">
+      <div class="chat-header bg-gray-100 p-4 border-b text-center rounded-lg mt-3">
+        <h2 class="text-xl font-semibold text-gray-900">{{ otherPartyName }}</h2>
+        <div v-if="showRequestButtons" class="mt-2 flex justify-center space-x-4">
+          <button @click="acceptRequest" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">قبول الطلب</button>
+          <button @click="rejectRequest" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">رفض الطلب</button>
+        </div>
+      </div>
     </div>
     <!-- الرسائل مع سكرول -->
     <div class="messages flex-1 overflow-auto p-4 space-y-2" dir="rtl" ref="messagesContainer">
@@ -27,12 +33,12 @@
       <button @click="sendMessage" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ml-2">إرسال</button>
     </div>
     <!-- مودال عرض الصورة بشكل مكبر -->
-<div v-if="selectedImage" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center" @click="selectedImage = null">
-  <img :src="selectedImage" class="max-w-full max-h-full rounded-lg" />
-</div>
-
+    <div v-if="selectedImage" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center" @click="selectedImage = null">
+      <img :src="selectedImage" class="max-w-full max-h-full rounded-lg" />
+    </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -43,25 +49,43 @@ export default {
       messages: [
         {
           name: "عبد العالي دوح",
-          text: "أهلا عبد الرحمان هذا تجريب فقط",
-          avatar: "../public/build1.jpg",
-          image: "../public/build2.jpg", // هنا يتم تعيين الصورة على null للرسائل بدون صور
+          text: "أهلاً ، ما تكلفة بناء جدار بطول 10 أمتار وارتفاع 3 أمتار؟",
+          avatar: "../public/craftsmen/painter/painter3.jpg",
+          image: null, 
           sent: false,
           timestamp: "10:00 AM",
           seen: true,
         }, 
         {
           name: "أنت",
-          text: "أهلا عبد العالي نعم نحن نجرب هذا فقط",
-          avatar: "../public/build1.jpg",
-          image: null, // هنا أيضًا
+          text: "تبلغ تكلفة بناء الجدار بالرخام حوالي 5000 دينار. إليك صورة لمشروع مشابه قمت به مؤخرًا.",
+          avatar:  "../public/craftsmen/Construction/Construction1.jpg",
+          image: "../public/wall.jpg", 
           sent: true,
           timestamp: "10:02 AM",
           seen: true,
         },
-        // يمكن إضافة المزيد من الرسائل حسب الحاجة
+        {
+          name: "عبد العالي دوح",
+          text: "ممتاز، هل يمكننا البدء الأسبوع القادم؟",
+          avatar: "../public/craftsmen/painter/painter3.jpg",
+          image: null, 
+          sent: false,
+          timestamp: "10:03 AM",
+          seen: true,
+        }, 
+        {
+          name: "أنت",
+          text: "تبلغ تكلفة بناء الجدار بالرخام حوالي 5000 دينار. إليك صورة لمشروع مشابه قمت به مؤخرًا.",
+          avatar:  "../public/craftsmen/Construction/Construction1.jpg",
+          image: null, 
+          sent: true,
+          timestamp: "10:05 AM",
+          seen: true,
+        },
       ],
       selectedImage: null,
+      showRequestButtons: true, 
     };
   },
   methods: {
@@ -104,8 +128,17 @@ export default {
         reader.readAsDataURL(file);
       }
     },
+    acceptRequest() {
+      alert("تم قبول الطلب");
+      this.showRequestButtons = false;
+    },
+    rejectRequest() {
+      alert("تم رفض الطلب");
+      this.showRequestButtons = false;
+    }
   },
 };
+
 </script>
 
 <style scoped>

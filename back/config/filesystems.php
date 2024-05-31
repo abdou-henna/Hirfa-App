@@ -48,6 +48,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'craftsmen_image_old_project' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/craftsmen_image_old_project'),
+            'url' => env('APP_URL').'/craftsmen_image_old_project',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

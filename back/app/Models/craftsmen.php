@@ -30,7 +30,7 @@ class craftsmen extends Model
         return $this->belongsTo('App\Models\craft','id_crafts','id');
     }
     public function image_craftsmens(){
-        return $this->hasMany('App\Models\image_craftsmens','id_craftsmen','id');
+        return $this->hasMany('App\Models\image_craftsmen','id_craftsmen','id');
     }
     public function Project(){
         return $this->hasMany('App\Models\Project','id_craftsmen','id');

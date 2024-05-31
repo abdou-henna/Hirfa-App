@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+    <div class="bg-white rounded-lg shadow p-5 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer">
       <h3 class="text-lg font-semibold text-gray-800">{{ title }}</h3>
       <p class="text-3xl font-bold text-blue-600">{{ value }}</p>
     </div>

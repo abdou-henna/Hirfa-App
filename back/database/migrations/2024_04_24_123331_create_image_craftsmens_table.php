@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('image_craftsmens', function (Blueprint $table) {
             $table->id();
             $table->string('url');
+            $table->string('description')->nullable();
             $table->integer('id_craftsmen')->unsigned();
             $table->timestamps();
         });

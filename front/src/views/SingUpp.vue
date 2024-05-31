@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full flex items-stretch">
+  <div class="w-full flex md:items-stretch ">
     <div
-      class="w-1/2 min-h-screen bg-hirfa-four-01 flex items-center justify-center"
+      class="w-1/2 min-h-screen hidden bg-hirfa-four-01 md:flex items-center justify-center"
     >
       <img src="../../public/HomeImg.jpg" class="w-[80%] place-self-center" />
     </div>
@@ -9,12 +9,12 @@
       <div class="w-[80%] m-auto h-full">
         <header class="w-full h-[50px] mt-10">
           <RouterLink to="/">
-          <img
-            src="../../public/Hirfa.png"
-            class="w-[100px] float-right pr-[5px]"
+            <img
+              src="../../public/Hirfa.png"
+              class="md:w-[100px] w-[110px] m-auto md:float-right  pr-[5px]"
           /></RouterLink>
         </header>
-        <section class="w-full mx-10 mt-10">
+        <section class="w-full m-auto mt-10">
           <div dir="rtl" class="m-6">
             <h1 class="font-cairo text-xl mb-2">تأكيد هويتك كحرفي</h1>
             <p class="font-normal text-lg">
@@ -97,7 +97,7 @@ export default {
       this[type] = file;
       this[type + "Name"] = file ? file.name : "";
     },
-    async submitIdentityConfirmation() {
+      async submitIdentityConfirmation() {
       const formData = new FormData();
       if (this.personalPhoto) formData.append("personalPhoto", this.personalPhoto);
       if (this.idCard) formData.append("idCard", this.idCard);

@@ -23,6 +23,26 @@
     <div class="w-1/2 h-screen grid bg-hirfa-four-01 float-left">
      <img src="../../public/HomeImg.jpg" class="w-[80%] place-self-center">
     </div>
+    <div class="md:w-1/2 w-full  flex mtt-28  ">
+      <form @submit.prevent="submitLogin" dir="rtl" class=" md:w-[60%] w-[85%] m-auto   h-full">
+        
+          <header class="w-full h-[50px]    mt-10">
+            <img src="../../public/Hirfa.png" class="w-[100px] float-right pr-[5px]">
+          </header>
+          <section class="w-full mt-20   ">
+            <div dir="rtl" class="m-6">
+              <h1 class="font-cairo text-2xl mb-2">سجل دخولك</h1>
+              <p class="font-normal">قم بتسجيل الدخول أو <RouterLink :to="{name: 'singup'}"><a class="text-blue-700 cursor-pointer">تسجيل حساب جديد</a></RouterLink></p>
+            </div>
+              <input v-model="loginData.email" type="email" class="bg-[#f8f8f8] w-full font-semibold leading-4 px-2 h-[50px] border-2 border-solid border-[#f8f8f8] hover:bg-[#f4f4f4] shadow-[0_0_0_1px_rgba(0,0,0,0.075)] mt-4 rounded-md focus:outline-none focus:border-blue-400 " placeholder="البريد الإلكتروني">
+              <input v-model="loginData.password" type="password" class="bg-[#f8f8f8] w-full font-semibold leading-4 px-2 h-[50px] border-2 border-solid border-[#f8f8f8] hover:bg-[#f4f4f4] shadow-[0_0_0_1px_rgba(0,0,0,0.075)] mt-4 rounded-md focus:outline-none focus:border-blue-400 " placeholder="كلمة المرور">
+              <button type="submit" class="hover:bg-[#004aca] w-full mt-12 mb-4 bg-[#005CFF] font-semibold text-white h-[50px] rounded-md focus:bg-[]">تسجيل الدخول</button>
+              <a class="text-[#005CFF] hover:text-[#004aca] cursor-pointer hover:underline underline-offset-1">هل نسيت إسم المستخدم أو كلمة المرور؟</a>
+            
+          </section>
+        
+      </form>
+    </div>
   </div>
 </template>
 
@@ -87,6 +107,11 @@ methods: {
 
 .card:hover .text-container h5 {
   opacity: 1;
+}
+@media (min-width: 1701px) {
+  .mtt-28 {
+    margin-top: 7rem;
+  }
 }
     </style>
     
