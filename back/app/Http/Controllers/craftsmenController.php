@@ -20,6 +20,17 @@ class craftsmenController extends Controller
             'data'=> $craft,
         ],200);
     }
+    public function get_craftsman (){
+        $craftsmen= craftsmen::orderBy('id')->get();
+        $craftsmen->transform(function ($craftsman) {
+            $craftsman->image = url('storage/craftsmen_image/' . $craftsman->image);
+            return $craftsman;
+        });
+        return response()->json([
+            'error' =>false,
+            'data'=> $craftsmen,
+        ],200);
+    }
     public function complete_register(Request $request){     
         $validator = Validator::make($request->all(), [
             'personalPhoto' => ['required', 'mimes:jpeg,jpg,png,gif', ],
@@ -169,6 +180,7 @@ class craftsmenController extends Controller
         'craftsman' => $craftsman->load('crafts', 'image_craftsmens'),
     ], 200);
 }
+
 
 
     

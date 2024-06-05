@@ -17,8 +17,8 @@
           class="border border-gray-300 rounded-lg p-2"
         >
           <option value="">اختر الحرفة</option>
-          <option v-for="typpe in craftsmanTypes" :value="typpe" :key="typpe">
-            {{ typpe }}
+          <option v-for="typpe in crafts" :value="typpe.id" :key="typpe.id">
+            {{ typpe.type }}
           </option>
         </select>
         <select
@@ -47,11 +47,11 @@
             class="flex flex-col items-center p-6 border rounded-xl shadow-xl bg-white bg-opacity-50 cursor-pointer hover:shadow-2xl transition-shadow duration-300 ease-in-out"
           >
             <img
-              :src="craftsman.ProfileImg"
-              :alt="craftsman.name"
+              :src="craftsman.image"
+              :alt="craftsman.firstName"
               class="w-32 h-32 rounded-full border-2 border-gray-300"
             />
-            <h2 class="text-xl font-bold mt-4">{{ craftsman.name }}</h2>
+            <h2 class="text-xl font-bold mt-4">{{ craftsman.firstName }} {{ craftsman.lastName }}</h2>
             <div class="flex items-center mt-2" dir="ltr">
               <star-rating :rating="craftsman.rating"></star-rating>
             </div>
@@ -64,12 +64,11 @@
   </div>
 </template>
 
-
 <script>
 import NavBarR from "../components/NavBarR.vue";
 import StarRating from "../components/StarRating.vue";
 import FooterF from "../components/FooterF.vue";
-import { craftsmen, getCraftsmenByType } from "@/assets/data.js";
+import axios from 'axios';
 
 export default {
   name: "CraftsmenList",
@@ -80,48 +79,57 @@ export default {
   },
   data() {
     return {
-      craftsmen: craftsmen,
+      craftsman: [],
+      craftsmen: [],
+      crafts: [],
       selectedCraft: "",
       selectedRating: 0,
-      searchQuery: "", // إضافة حقل البحث
-      // Example structure for craftsmen organized by craft type
+      searchQuery: "",
     };
   },
+  created() {
+    this.index_craftsman();
+    this.get_crafts();
+  },
   methods: {
+    async index_craftsman() {
+      const response = await axios.post('/index_craftsman');
+      this.craftsmen = response.data.data;
+      console.log(response.data.data);
+    },
+    async get_crafts() {
+      const response = await axios.post('/get_crafts');
+      this.crafts = response.data.data;
+      console.log(response.data.data);
+    },
     gotocraft(craftsmanId) {
       this.$router.push({
         name: "craftsmanprofile",
         params: { id: craftsmanId },
       });
     },
-    getCraftsmenByType,
   },
   computed: {
-    craftsmanTypes() {
-      return [...new Set(this.craftsmen.map((craftsman) => craftsman.type))];
-    },
     filteredCraftsmen() {
       let filtered = {};
-      for (let type of this.craftsmanTypes) {
+      for (let craft of this.crafts) {
         let craftsmenOfType = this.craftsmen.filter((craftsman) => {
           return (
-            craftsman.type === type &&
+            craftsman.id_crafts === craft.id &&
             craftsman.rating >= this.selectedRating &&
-            (this.selectedCraft === "" || craftsman.type === this.selectedCraft) &&
-            (this.searchQuery === "" || craftsman.name.includes(this.searchQuery))
+            (this.selectedCraft === "" || craft.name === this.selectedCraft) &&
+            (this.searchQuery === "" || (craftsman.firstName + ' ' + craftsman.lastName).includes(this.searchQuery))
           );
         });
         if (craftsmenOfType.length > 0) {
-          filtered[type] = craftsmenOfType;
+          filtered[craft.type] = craftsmenOfType;
         }
       }
       return filtered;
     },
   },
 };
-
 </script>
-
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@600&family=Amiri:ital,wght@0,700;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Marhey:wght@300..700&display=swap");

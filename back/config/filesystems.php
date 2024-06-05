@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'image_projects' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/image_projects'),
+            'url' => env('APP_URL').'/image_projects',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

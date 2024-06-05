@@ -25,7 +25,6 @@
               >
                 <option  disabled :value="tempCraftsman.crafts.id">{{ tempCraftsman.crafts.type }}</option>
                 <option v-for="x in crafts" :key="x.id" :value="x.id" >{{ x.type }}</option>
-                <!-- إضافة المزيد من الفئات حسب الحاجة -->
               </select>
           </div>
           <div class="flex flex-col">
