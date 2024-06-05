@@ -29,6 +29,66 @@
       </div>
     </div>
 
+    <!-- قائمة الحرفيين المميزين -->
+    <div class="container mx-auto px-4 py-8" dir="rtl">
+      <h2 class="text-2xl font-bold mb-4 text-center">الحرفيين المميزين</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div v-for="(craftsman, index) in sortedFeaturedCraftsmen" :key="index" class="bg-white rounded-lg shadow-lg p-6 flex justify-between items-center">
+          <img :src="craftsman.ProfileImg" alt="صورة الحرفي" class="w-16 h-16 rounded-full object-cover mr-4">
+          <div>
+            <p class="text-xl font-semibold">{{ craftsman.name }}</p>
+            <p class="text-gray-500">{{ craftsman.type }}</p>
+          </div>
+          <span class="text-gray-500">#{{ craftsman.rank }}</span>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <button @click="showFeaturedCraftsmenModal = true" class="bg-yellow-500 text-white px-4 py-2 rounded">اختر الحرفيين المميزين</button>
+      </div>
+    </div>
+
+    <!-- نافذة منبثقة لاختيار الحرفيين المميزين -->
+    <transition name="fade">
+      <div v-if="showFeaturedCraftsmenModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-lg p-8 w-3/4 max-w-4xl relative" dir="rtl">
+          <button @click="showFeaturedCraftsmenModal = false" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+          <h3 class="text-2xl font-semibold mb-4 text-center">اختر الحرفيين المميزين</h3>
+          <div class="max-h-96 overflow-y-auto">
+            <table class="min-w-full mb-6">
+              <thead>
+                <tr class="border-b">
+                  <th class="text-right px-2 py-3">ID</th>
+                  <th class="text-right px-2 py-3">الاسم</th>
+                  <th class="text-right px-2 py-3">الحرفة</th>
+                  <th class="text-right px-2 py-3">تاريخ الانضمام</th>
+                  <th class="text-right px-2 py-3">اختيار كحرفي مميز</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="craftsman in craftsmen" :key="craftsman.id" class="border-b">
+                  <td class="px-2 py-3">{{ craftsman.id }}</td>
+                  <td class="px-2 py-3">{{ craftsman.name }}</td>
+                  <td class="px-2 py-3">{{ craftsman.type }}</td>
+                  <td class="px-2 py-3">{{ craftsman.joinDate }}</td>
+                  <td class="px-2 py-3">
+                    <select v-model="featuredCraftsmen[craftsman.id]" @change="updateFeaturedCraftsmen(craftsman.id)">
+                      <option value="">اختر الترتيب</option>
+                      <option value="1">الأول</option>
+                      <option value="2">الثاني</option>
+                      <option value="3">الثالث</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="text-center mt-4">
+            <button @click="saveFeaturedCraftsmen" class="bg-blue-500 text-white px-4 py-2 rounded">حفظ</button>
+          </div>
+        </div>
+      </div>
+    </transition>
+
     <!-- نافذة منبثقة لعرض قائمة الحرفيين -->
     <transition name="fade">
       <div v-if="showCraftsmenModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-y-auto">
@@ -176,7 +236,7 @@ import OrdersList from "../components/AdminDashboard/OrdersList.vue";
 import NewUsersList from "../components/AdminDashboard/NewUsersList.vue";
 import NavBarR from "../components/NavBarR.vue";
 import FooterF from "../components/FooterF.vue";
-import { craftsmen, users } from "@/assets/data.js"; // استيراد البيانات من data.js
+import { craftsmen, users, best_craftsmen } from "@/assets/data.js"; // استيراد البيانات من data.js
 
 export default {
   components: {
@@ -191,6 +251,7 @@ export default {
     return {
       showCraftsmenModal: false,
       showUsersModal: false,
+      showFeaturedCraftsmenModal: false,
       activeCraftsmenTab: 'craftsmen',
       activeUsersTab: 'users',
       stats: {
@@ -202,6 +263,7 @@ export default {
       blockedCraftsmen: [],
       users: users,
       blockedUsers: [],
+      featuredCraftsmen: this.initFeaturedCraftsmen(),
       chartData1: {
         type: "line",
         data: {
@@ -278,7 +340,28 @@ export default {
       },
     };
   },
+  computed: {
+    sortedFeaturedCraftsmen() {
+      let sorted = [];
+      for (let id in this.featuredCraftsmen) {
+        if (this.featuredCraftsmen[id]) {
+          let craftsman = this.craftsmen.find(c => c.id == id);
+          if (craftsman) {
+            sorted.push({ ...craftsman, rank: this.featuredCraftsmen[id] });
+          }
+        }
+      }
+      return sorted.sort((a, b) => a.rank - b.rank);
+    }
+  },
   methods: {
+    initFeaturedCraftsmen() {
+      let featured = {};
+      best_craftsmen.forEach(item => {
+        featured[item.id] = item.rank;
+      });
+      return featured;
+    },
     viewProfile(id) {
       // منطق لعرض الملف الشخصي للحرفي
       alert(`عرض الملف الشخصي للحرفي ID: ${id}`);
@@ -318,6 +401,24 @@ export default {
         this.blockedUsers = this.blockedUsers.filter(u => u.id !== id);
         this.users.push(user);
       }
+    },
+    updateFeaturedCraftsmen(id) {
+      // منطق لتحديث قائمة الحرفيين المميزين
+      const selectedOrder = this.featuredCraftsmen[id];
+      if (selectedOrder) {
+        // إزالة التكرارات
+        Object.keys(this.featuredCraftsmen).forEach(key => {
+          if (this.featuredCraftsmen[key] === selectedOrder && key !== id.toString()) {
+            this.featuredCraftsmen[key] = "";
+          }
+        });
+      }
+    },
+    saveFeaturedCraftsmen() {
+      // منطق لحفظ قائمة الحرفيين المميزين
+      console.log('الحرفيين المميزين:', this.featuredCraftsmen);
+      this.showFeaturedCraftsmenModal = false;
+      // يمكنك هنا تنفيذ منطق لحفظ البيانات في قاعدة البيانات أو أي عمليات أخرى.
     }
   }
 };

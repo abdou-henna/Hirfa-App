@@ -69,8 +69,8 @@
         <create-post-form Forfor="إرسال الطلب" :post="false" />
       </div>
     </div>
-    <div v-else>
-      <p>جاري تحميل بيانات الحرفي...</p>
+    <div class="flex justify-center my-20" v-else>
+      <p class=" text-3xl ">جاري تحميل بيانات الحرفي...</p>
     </div>
 
     <!-- مودال عرض تقييمات العملاء -->
@@ -177,7 +177,7 @@ const reviews = ref([
   { id: 4, rating: 3.5, customerName: "عميل 4", comment: "عمل ممتاز!" },
   // أضف المزيد من التقييمات هنا
 ]);
-const isOwner = ref(true); // يُفترض أن هذه القيمة ستتحدد بناءً على ما إذا كان المستخدم هو صاحب الصفحة
+const isOwner = ref(false);
 
 onMounted(() => {
   const id = parseInt(route.params.id);

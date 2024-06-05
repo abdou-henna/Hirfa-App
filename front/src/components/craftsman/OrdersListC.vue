@@ -68,7 +68,6 @@ export default {
           subject: "تجديد المطبخ بالكامل، تغيير الأرضيات والخزائن.",
           attachment: "../../../public/Craftsmen/carpenter/gallery/work5.jpg",
         },
-        // المزيد من الطلبات هنا
       ],
     };
   },

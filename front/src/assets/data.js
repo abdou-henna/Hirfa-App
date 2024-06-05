@@ -348,9 +348,7 @@ export const craftsmen = [
     { id: 20, name: "ندى سمير", email: "user20@example.com", joinDate: "2023-08-15" },
   ];
   export const best_craftsmen = [
-    { id: 14, rank: 1 },  
-    { id: 11, rank: 2 },  
-    { id: 8, rank: 3 }   
+    
   ];
   export function getCraftsmenByType(type) {
     return craftsmen.filter(craftsman => craftsman.type === type);

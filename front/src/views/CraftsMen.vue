@@ -84,7 +84,11 @@ export default {
       crafts: [],
       selectedCraft: "",
       selectedRating: 0,
+<<<<<<< HEAD
       searchQuery: "",
+=======
+      searchQuery: "", // إضافة حقل البحث
+>>>>>>> 912a37564c1bdc6c8f135058ec6006eb2b7614f8
     };
   },
   created() {
