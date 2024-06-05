@@ -84,7 +84,6 @@ export default {
       selectedCraft: "",
       selectedRating: 0,
       searchQuery: "", // إضافة حقل البحث
-      // Example structure for craftsmen organized by craft type
     };
   },
   methods: {

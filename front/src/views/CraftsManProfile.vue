@@ -152,7 +152,7 @@ const reviews = ref([
   { id: 4, rating: 3.5, customerName: "عميل 4", comment: "عمل ممتاز!" },
   // أضف المزيد من التقييمات هنا
 ]);
-const isOwner = ref(false); // يُفترض أن هذه القيمة ستتحدد بناءً على ما إذا كان المستخدم هو صاحب الصفحة
+const isOwner = ref(false);
 
 onMounted(() => {
   const id = parseInt(route.params.id);

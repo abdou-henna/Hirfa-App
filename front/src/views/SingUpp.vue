@@ -5,18 +5,9 @@
     >
       <img src="../../public/HomeImg.jpg" class="w-[80%] place-self-center" />
     </div>
-<<<<<<< HEAD
-    <div class="md:w-1/2 w-full  flex ">
-      <form
-      @submit="submitIdentityConfirmation"
-        class="w-[80%] m-auto  h-full"
-      >
-        <header class="w-full h-[50px]  m-auto  mt-10">
-=======
     <div class="w-1/2 flex items-center justify-center">
       <div class="w-[80%] m-auto h-full">
         <header class="w-full h-[50px] mt-10">
->>>>>>> 097d2aa90ea183dc02b5d4ee529e014fa1787a59
           <RouterLink to="/">
             <img
               src="../../public/Hirfa.png"
@@ -106,27 +97,10 @@ export default {
       this[type] = file;
       this[type + "Name"] = file ? file.name : "";
     },
-    submitIdentityConfirmation() {
+    async submitIdentityConfirmation() {
       const formData = new FormData();
       if (this.personalPhoto) formData.append("personalPhoto", this.personalPhoto);
       if (this.idCard) formData.append("idCard", this.idCard);
-<<<<<<< HEAD
-      if (this.craftCertificate)
-        formData.append("craftCertificate", this.craftCertificate);
-
-      axios
-        .post("YOUR_IDENTITY_CONFIRMATION_API_ENDPOINT", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then(() => {
-          console.log("Identity information sent successfully.");
-        })
-        .catch((error) => {
-          console.error("Error sending identity information:", error);
-        });
-=======
       if (this.craftCertificate) formData.append("craftCertificate", this.craftCertificate);
       const config = {
 					headers: {
@@ -138,7 +112,6 @@ export default {
       } catch (error) {
         console.error("Error confirming identity", error);
       }
->>>>>>> 097d2aa90ea183dc02b5d4ee529e014fa1787a59
     },
   },
 };
