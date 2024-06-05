@@ -97,7 +97,7 @@ export default {
       this[type] = file;
       this[type + "Name"] = file ? file.name : "";
     },
-    async submitIdentityConfirmation() {
+      async submitIdentityConfirmation() {
       const formData = new FormData();
       if (this.personalPhoto) formData.append("personalPhoto", this.personalPhoto);
       if (this.idCard) formData.append("idCard", this.idCard);
@@ -108,7 +108,7 @@ export default {
 					}};
       try {
         const response = await axios.post('/complete_register', formData, config);
-        console.log("Identity confirmed successfully", response);
+        window.location.href = '/craftsman';
       } catch (error) {
         console.error("Error confirming identity", error);
       }

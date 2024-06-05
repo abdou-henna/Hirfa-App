@@ -12,6 +12,7 @@ class image_craftsmen extends Model
     protected $fillable = [
         'url',
         'id_craftsmen',
+        'description',
     ];
     public function craftsmen(){
         return $this->belongsTo('App\Models\craftsmen','id_craftsmen','id');

@@ -11,20 +11,20 @@
         <div class="mb-4">
           <img
             class="w-40 h-40 rounded-full border-4 border-blue-500 cursor-pointer"
-            :src="craftsman.ProfileImg"
+            :src="user_craftesman.image_url"
             @click="triggerProfileImgUpload"
             alt="Craftsman Profile"
           />
           <input type="file" ref="profileImgInput" class="hidden" @change="handleProfileImgChange" />
         </div>
         <div class="mb-4">
-          <h2 class="text-gray-800 font-bold text-4xl">{{ craftsman.name }}</h2>
+          <h2 class="text-gray-800 font-bold text-4xl">{{ user_craftesman.firstName }}</h2>
         </div>
         <!-- عرض تفاصيل الحرفة والمكان والسعر -->
         <div class="mb-4 space-y-2">
-          <p class="text-gray-700"> الحرفة : {{ craftsman.type }}</p>
-          <p class="text-gray-700"> المكان : {{ craftsman.place }} </p>
-          <p class="text-gray-700"> السعر : {{ craftsman.price }} </p>
+          <p class="text-gray-700"> الحرفة : {{ user_craftesman.crafts.type }}</p>
+          <p class="text-gray-700"> المكان : {{ user_craftesman.place }} </p>
+          <p class="text-gray-700"> السعر : {{ user_craftesman.price }} </p>
         </div>
         <!-- عرض تقييمات العملاء -->
         <div
@@ -32,12 +32,12 @@
           @click="showModal = true"
         >
           <star-rating
-            :rating="craftsman.rating"
+            :rating="user_craftesman.rating"
             :read-only="true"
             starSize="3"
           ></star-rating>
           <p class="text-sm text-gray-600 mt-2">
-            عدد العملاء الذين تعاملوا مع الحرفي: {{ reviews.length }}
+            عدد العملاء الذين تعاملوا مع الحرفي: {{ user_craftesman.number_clients }}
           </p>
         </div>
         <!-- زر لتعديل البيانات -->
@@ -49,7 +49,7 @@
       <!-- معرض صور الحرفي -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
         <div
-          v-for="image in craftsman.craftsmanGallery"
+          v-for="image in user_craftesman.image_craftsmens"
           :key="image.id"
           class="rounded-lg overflow-hidden cursor-pointer"
           @click="
@@ -58,8 +58,8 @@
           "
         >
           <img
-            :src="image.src"
-            :alt="image.alt"
+            :src="image.full_url"
+            alt="حدثت مشكلة اثناء رفع الصورة"
             class="w-full h-full object-cover rounded-lg"
           />
         </div>
@@ -69,8 +69,8 @@
         <create-post-form Forfor="إرسال الطلب" :post="false" />
       </div>
     </div>
-    <div v-else>
-      <p>جاري تحميل بيانات الحرفي...</p>
+    <div class="flex justify-center my-20" v-else>
+      <p class=" text-3xl ">جاري تحميل بيانات الحرفي...</p>
     </div>
 
     <!-- مودال عرض تقييمات العملاء -->
@@ -107,7 +107,7 @@
         @click.stop
       >
         <img
-          :src="selectedImage.src"
+          :src="selectedImage.full_url"
           class="rounded-lg max-w-full max-h-[80vh] md:min-h-96"
         />
         <p class="text-gray-900 mt-4 text-center max-w-full">
@@ -118,16 +118,41 @@
 
     <!-- مودال تعديل المعلومات -->
     <EditCraftsmanModal
-      v-if="showEditModal"
-      :craftsman="craftsman"
+      v-if="showEditModal && user_craftesman"
+      :craftsman="user_craftesman"
       @closeModal="showEditModal = false"
       @saveChanges="saveCraftsmanChanges"
-    />
+    />  
 
     <footer-f class="z-30"></footer-f>
   </div>
 </template>
-
+<script>
+import axios from 'axios';
+export default {
+  name: "CraftsmanProfile",
+  data() {
+    return {
+      user_craftesman: null
+    }
+  },
+  created() {
+			this.showInformation();
+		},
+    methods: {
+      async showInformation(){
+        try {
+          const response =await axios.post(`/show_information_craftsman`);
+          this.user_craftesman=response.data.data;
+          console.log(response)
+        } catch (error) {
+          console.log(error);
+        }     
+      },
+    }
+  
+}
+</script>
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
